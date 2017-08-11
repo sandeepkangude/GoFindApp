@@ -1,0 +1,29 @@
+<app-nav></app-nav>
+<div class="container">
+  <div class="starter-template">
+    <h1>
+      Welcome to {{title}}!!
+    </h1>
+    <form novalidate [formGroup]="myform">
+      <div class="row form-group">
+        <div class="col col-10" [ngClass]="{
+        'has-danger': url.invalid && (url.dirty || url.touched),
+        'has-success': url.valid && (url.dirty || url.touched)
+   }">
+          <input placeholder="Please enter your image url" type="text" class="form-control" formControlName="url">
+          <div class="form-control-feedback" *ngIf="url.invalid && url.dirty">
+            Please enter valid image url
+          </div>
+        </div>
+        <div class="col col-2">
+          <input type="button" value="FIND" class="btn btn-primary btn-block" [disabled]="(url.value.length <= 0) || (url.invalid && url.dirty)"
+            (click)="FindResult()" />
+        </div>
+      </div>
+    </form>
+    <div>
+      <app-card [data]="result"></app-card>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
